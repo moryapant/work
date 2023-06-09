@@ -1,0 +1,3 @@
+google.com:india
+reditt.com:US
+gmail.com:SG
