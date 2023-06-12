@@ -1,6 +1,6 @@
 #!/bin/bash
 
-log_file="vrui.log"
+log_file="example.log"
 lines_to_check=100
 
 # Get the last 100 lines of the log file
