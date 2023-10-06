@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Run the forever status command and save the output to a file
+forever list > forever_status.txt
+
+echo "Output saved to forever_status.txt"
+
+# Read the file and search for lines containing "app.js"
+while IFS= read -r line; do
+  if [[ "$line" == *'app.js'* ]]; then
+    char_11="${line:10:1}"
+    char_12="${line:11:1}"
+    echo "11th character: $char_11"
+    echo "12th character: $char_12"
+  fi
+done < forever_status.txt
