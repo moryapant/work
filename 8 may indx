@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Status Monitor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Service Status Entries</h1>
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Hostname</th>
+            <th>Status</th>
+        </tr>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.split(' - ')[0] }}</td>
+            <td>{{ entry.split(' - ')[1] }}</td>
+            <td>{{ entry.split(' - ')[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
