@@ -1,0 +1,29 @@
+import pandas as pd
+import os
+
+# Set the directory to the 'excel' folder in the same path as your script
+directory = os.path.join(os.path.dirname(__file__), 'excel')
+
+# Loop through each file in the directory
+for filename in os.listdir(directory):
+    if filename.endswith('.xlsx'):  # Ensures we only process Excel files
+        filepath = os.path.join(directory, filename)
+        try:
+            # Load the spreadsheet
+            xls = pd.ExcelFile(filepath)
+            # Check if 'Application' sheet is in the file
+            if 'Application' in xls.sheet_names:
+                df = pd.read_excel(xls, 'Application')
+                # Check if 'Contacts' column is in the 'Application' tab
+                if 'Contacts' in df.columns:
+                    # Count non-NA cells in the 'Contacts' column
+                    contact_count = df['Contacts'].notna().sum()
+                    print(f'{filename}: {contact_count} contacts')
+                else:
+                    print(f'No "Contacts" column in {filename}')
+            else:
+                print(f'No "Application" sheet in {filename}')
+        except Exception as e:
+            print(f'Failed to process {filename}: {str(e)}')
+    else:
+        continue
